@@ -24,4 +24,9 @@ elif (sys.argv[1] == "edit"):
   base.save(path)
 
 elif (sys.argv[1] == "del"):
-  base.delete_record(sys.argv[2])
+  if(sys.argv[2] == "all"):
+    base.records = []
+  else:
+    base.delete_record(sys.argv[2])
+    
+  base.save(path)
