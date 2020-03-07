@@ -7,5 +7,5 @@ base = DB()
 base.load('data/records.txt')
 
 if (sys.argv[1] == "add"):
-  base.add_record("{},{},{}".format(sys.argv[2], sys.argv[3], sys.argv[4]))
+  base.add_record("x,{},{}".format(sys.argv[2], sys.argv[3]))
   base.save('data/records.txt')

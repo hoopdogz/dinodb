@@ -23,6 +23,8 @@ class DB:
   def save(self, path):
     count = 0
 
+    self.clean_records()
+
     with open(path, "w") as fp:
       text_output = ""
 
@@ -44,7 +46,7 @@ class DB:
       contents[0] = self.highest_record() + 1
 
     if (not self.read_record(contents[0])):
-      new_record = Record(contents[0], contents[1], contents[2])
+      new_record = Record(int(contents[0]), contents[1], contents[2])
       self.records.append(new_record)
     else:
       new_record = False
@@ -84,3 +86,20 @@ class DB:
         highest = int(rec.id)
 
     return highest
+
+# Sort and re-number all records
+  def clean_records(self):
+
+    # Bubble sort
+    for i in range(0, len(self.records)):
+      for j in range(0, len(self.records)-i-1):
+        if(self.records[j].id > self.records[j+1].id):
+          temp = self.records[j]
+          self.records[j] = self.records[j+1]
+          self.records[j+1] = temp
+
+    # Renumber
+    count = 1
+    for rec in self.records:
+      rec.id = count
+      count += 1
