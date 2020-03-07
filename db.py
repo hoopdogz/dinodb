@@ -39,6 +39,10 @@ class DB:
     contents = line.split(',')
     contents[2] = contents[2].replace("\n", "")
 
+    # Auto assign id if none given
+    if(contents[0] == "x"):
+      contents[0] = self.highest_record() + 1
+
     if (not self.read_record(contents[0])):
       new_record = Record(contents[0], contents[1], contents[2])
       self.records.append(new_record)
@@ -71,3 +75,12 @@ class DB:
     for rec in self.records:
       if (rec.id == id):
         self.records.remove(rec)
+
+# Return record with the highest id
+  def highest_record(self):
+    highest = 0
+    for rec in self.records:
+      if (int(rec.id) > highest):
+        highest = int(rec.id)
+
+    return highest
