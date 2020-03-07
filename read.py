@@ -7,6 +7,7 @@ base.load('data/records.txt')
 
 # Create new record
 base.add_record("6,hoopdogz,I love skiing")
-rec2 = base.read_record("6")
+
+base.add_record("9,hoopdogz,Nothing bad will ever happen")
 
 base.save('data/records.txt')

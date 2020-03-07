@@ -39,8 +39,13 @@ class DB:
     contents = line.split(',')
     contents[2] = contents[2].replace("\n", "")
 
-    new_record = Record(contents[0], contents[1], contents[2])
-    self.records.append(new_record)
+    if (not self.read_record(contents[0])):
+      new_record = Record(contents[0], contents[1], contents[2])
+      self.records.append(new_record)
+    else:
+      new_record = False
+      print("Record with id of {} already exists".format(contents[0]))
+
     return new_record
 
 
@@ -53,3 +58,16 @@ class DB:
         found_record = rec
 
     return found_record
+
+# Update a record's content
+  def update_record(self, id, new_content):
+    for rec in self.records:
+      if (rec.id == id):
+        found_record.content = new_content
+
+
+# Delete a record
+  def delete_record(self, id):
+    for rec in self.records:
+      if (rec.id == id):
+        self.records.remove(rec)
