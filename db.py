@@ -16,7 +16,7 @@ class DB:
         line = fp.readline()
         count += 1
 
-    print("I found {} records.".format(count))
+    # print("I found {} records.".format(count))
 
 
 # Saves records to file
@@ -33,7 +33,7 @@ class DB:
         count += 1
         
       fp.write(text_output)
-      print("I wrote {} records.".format(count))
+      # print("I wrote {} records.".format(count))
 
 # Add a single record to the current array
   def add_record(self, line):
