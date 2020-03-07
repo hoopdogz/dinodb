@@ -3,9 +3,25 @@ from db import DB
 
 import sys
 
+path = 'data/records.txt'
+
 base = DB()
-base.load('data/records.txt')
+base.load(path)
 
 if (sys.argv[1] == "add"):
   base.add_record("x,{},{}".format(sys.argv[2], sys.argv[3]))
-  base.save('data/records.txt')
+  base.save(path)
+
+elif (sys.argv[1] == "get"):
+  if(sys.argv[2] == "all"):
+    for rec in base.records:
+      print(base.read_record(rec.id).to_text())
+  else:
+    print(base.read_record(int(sys.argv[2])).to_text())
+  
+elif (sys.argv[1] == "edit"):
+  base.update_record(sys.argv[2], sys.argv[3])
+  base.save(path)
+
+elif (sys.argv[1] == "del"):
+  base.delete_record(sys.argv[2])
